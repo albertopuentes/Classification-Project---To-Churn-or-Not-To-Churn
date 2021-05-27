@@ -1,3 +1,8 @@
+# import splitting and imputing functions
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+
+
 # This function takes in the telco_df generated via acquire.telco_data() function and prepares the data to be split into train, validate & test dataframes 
 
 def prep_df(telco_df):
@@ -26,3 +31,17 @@ def prep_df(telco_df):
     prep_df = prep_df.replace({'Male':1, 'Female':0})
     
     return prep_df   
+
+# Train, Validate, Test data split
+
+def telco_split(df):
+    '''
+    take in a prepped Telco dataframe and return train, validate, and test DataFrames; stratify on churn.
+    return train, validate, test DataFrames.
+    '''
+    train_validate, test = train_test_split(df, test_size=.2, random_state=123, stratify=df.churn)
+    train, validate = train_test_split(train_validate, 
+                                       test_size=.3, 
+                                       random_state=123, 
+                                       stratify=train_validate.churn)
+    return train, validate, test
