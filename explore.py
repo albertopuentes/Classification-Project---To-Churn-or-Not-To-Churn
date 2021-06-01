@@ -216,4 +216,12 @@ def plot_swarm_grid_with_color(train, target, cat_vars, quant_vars):
             ax[i].set_xlabel('')
             ax[i].set_ylabel(quant)
             ax[i].set_title(cat)
-        plt.show()
+        plt.show
+        
+def normal(x):
+    '''
+    function that will take in input and output value counts for inputs 
+    '''
+    for col in x:
+        print(train[col].value_counts(normalize=True))
+        print('**********************')
